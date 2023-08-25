@@ -1,14 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { View } from 'react-native'
+import React, { useState } from 'react'
+import { Provider } from 'react-redux'
+import { store } from './context/store'
+import Word from './components/Word/Word'
+import RoundButton from './components/RoundButton/RoundButton'
 
 const App = () => {
+  const [isModal, setModal] = useState(false)
   return (
-    <View>
-      <Text>App</Text>
-    </View>
+    <Provider store={store}>
+      <View style={{ flex: 1 }}>
+        <Word />
+        <RoundButton modal={{ isModal, setModal }} />
+      </View>
+    </Provider>
   )
 }
 
 export default App
-
-const styles = StyleSheet.create({})
