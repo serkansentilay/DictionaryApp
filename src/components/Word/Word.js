@@ -1,11 +1,13 @@
 import { Text, View, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import styles from "./Word.style"
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
+
 
 const Word = () => {
     const [index, setIndex] = useState(0)
-    const dictionary = useSelector(state => state.dictionary)
+
+    const dictionary = useSelector(state => state.dictionary.dictList)
 
     const move = (type) => {
         if (type === "next") {

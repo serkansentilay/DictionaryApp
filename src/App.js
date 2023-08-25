@@ -1,19 +1,24 @@
 import { View } from 'react-native'
-import React, { useState } from 'react'
-import { Provider } from 'react-redux'
-import { store } from './context/store'
+import React, { useEffect, useState } from 'react'
 import Word from './components/Word/Word'
 import RoundButton from './components/RoundButton/RoundButton'
+import { useDispatch } from "react-redux"
+import { dictionaryList } from './context/dictionarySlice'
 
 const App = () => {
   const [isModal, setModal] = useState(false)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(dictionaryList())
+  }, [])
+
   return (
-    <Provider store={store}>
-      <View style={{ flex: 1 }}>
-        <Word />
-        <RoundButton modal={{ isModal, setModal }} />
-      </View>
-    </Provider>
+    <View style={{ flex: 1 }}>
+      <Word />
+      <RoundButton modal={{ isModal, setModal }} />
+    </View>
+
   )
 }
 
